@@ -12,6 +12,8 @@ public struct WeatherKitRESTConfiguration:
     public let language: String
     public let timeZone: String
 
+    public static let defaultEnvironmentPrefix = "WEATHERKIT"
+
     public init(
         teamID: String,
         keyID: String,
@@ -29,19 +31,23 @@ public struct WeatherKitRESTConfiguration:
         self.timeZone = timeZone
     }
 
-    public static func environment() throws -> Self {
+    /// Reads `<prefix>_TEAM_ID`, `<prefix>_KEY_ID`, `<prefix>_SERVICE_ID`
+    /// and the PEM file at `<prefix>_PRIVATE_KEY_PATH`.
+    public static func environment(
+        prefix: String = defaultEnvironmentPrefix
+    ) throws -> Self {
         let teamID = try EnvironmentExtractor.value(
-            "AGENTIC_WEATHERKIT_TEAM_ID"
+            "\(prefix)_TEAM_ID"
         )
         let keyID = try EnvironmentExtractor.value(
-            "AGENTIC_WEATHERKIT_KEY_ID"
+            "\(prefix)_KEY_ID"
         )
         let serviceID = try EnvironmentExtractor.value(
-            "AGENTIC_WEATHERKIT_SERVICE_ID"
+            "\(prefix)_SERVICE_ID"
         )
         let privateKeyData = try EnvironmentExtractor.data(
             .symbol(
-                "AGENTIC_WEATHERKIT_PRIVATE_KEY_PATH"
+                "\(prefix)_PRIVATE_KEY_PATH"
             )
         )
 

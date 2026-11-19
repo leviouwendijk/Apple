@@ -5,6 +5,7 @@ public actor WeatherKitRESTProvider:
 {
     private let explicitConfiguration:
         WeatherKitRESTConfiguration?
+    private let environmentPrefix: String
     private let session: URLSession
 
     private var resolvedConfiguration:
@@ -12,11 +13,16 @@ public actor WeatherKitRESTProvider:
     private var cachedToken:
         WeatherKitRESTDeveloperToken?
 
+    /// Without a configuration, credentials are read from the environment
+    /// under `environmentPrefix` on first use.
     public init(
         configuration: WeatherKitRESTConfiguration? = nil,
+        environmentPrefix: String =
+            WeatherKitRESTConfiguration.defaultEnvironmentPrefix,
         session: URLSession = .shared
     ) {
         self.explicitConfiguration = configuration
+        self.environmentPrefix = environmentPrefix
         self.session = session
     }
 
@@ -138,7 +144,9 @@ private extension WeatherKitRESTProvider {
         if let explicitConfiguration {
             configuration = explicitConfiguration
         } else {
-            configuration = try .environment()
+            configuration = try .environment(
+                prefix: environmentPrefix
+            )
         }
 
         resolvedConfiguration = configuration

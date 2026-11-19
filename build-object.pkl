@@ -12,6 +12,6 @@ compile {
     use = false
     arguments { }
 }
-details = "Apple frameworks as typed, schema-describing providers: EventKit calendar and reminders, CoreLocation, WeatherKit (framework and REST), Music.app and MusicKit."
+details = "Apple frameworks as typed, schema-describing providers: EventKit calendar and reminders, CoreLocation, WeatherKit (framework and REST), Music.app and MusicKit, MapKit, Contacts, and .numbers documents."
 author = "levi"
 update = "https://raw.githubusercontent.com/leviouwendijk/Apple/master/build-object.pkl"

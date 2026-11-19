@@ -14,11 +14,18 @@ let package = Package(
         .library(name: "AppleLocation", targets: ["AppleLocation"]),
         .library(name: "AppleWeather", targets: ["AppleWeather"]),
         .library(name: "AppleMusic", targets: ["AppleMusic"]),
+        .library(name: "AppleMaps", targets: ["AppleMaps"]),
+        .library(name: "AppleContacts", targets: ["AppleContacts"]),
+        .library(name: "AppleNumbers", targets: ["AppleNumbers"]),
+
+        .executable(name: "numberstest", targets: ["AppleNumbersTestFlows"]),
     ],
     dependencies: [
         .package(url: "https://github.com/leviouwendijk/Schema.git", branch: "master"),
         .package(url: "https://github.com/leviouwendijk/Macros.git", branch: "master"),
         .package(url: "https://github.com/leviouwendijk/Milieu.git", branch: "master"),
+        .package(url: "https://github.com/leviouwendijk/TestFlows.git", branch: "master"),
+        .package(url: "https://github.com/weichsel/ZIPFoundation.git", exact: "0.9.20"),
     ],
     targets: [
         .target(
@@ -29,8 +36,49 @@ let package = Package(
                 "AppleLocation",
                 "AppleWeather",
                 "AppleMusic",
+                "AppleMaps",
+                "AppleContacts",
+                "AppleNumbers",
             ],
             path: "Sources/Apple"
+        ),
+
+        // MapKit geocoding and routing
+        .target(
+            name: "AppleMaps",
+            dependencies: [
+                .product(name: "Schema", package: "Schema"),
+                .product(name: "Macros", package: "Macros"),
+            ],
+            path: "Sources/AppleMaps"
+        ),
+
+        // Contacts accounts, including Google over CardDAV
+        .target(
+            name: "AppleContacts",
+            dependencies: [
+                .product(name: "Schema", package: "Schema"),
+                .product(name: "Macros", package: "Macros"),
+            ],
+            path: "Sources/AppleContacts"
+        ),
+
+        // .numbers documents read natively, and through Numbers.app scripting
+        .target(
+            name: "AppleNumbers",
+            dependencies: [
+                .product(name: "ZIPFoundation", package: "ZIPFoundation"),
+            ],
+            path: "Sources/AppleNumbers"
+        ),
+
+        .executableTarget(
+            name: "AppleNumbersTestFlows",
+            dependencies: [
+                "AppleNumbers",
+                .product(name: "TestFlows", package: "TestFlows"),
+            ],
+            path: "Testing/AppleNumbersTestFlows"
         ),
 
         // EventKit events
