@@ -16,9 +16,6 @@ xcuserdata/
 .env
 .env.*
 .env/*
-compiled.pkl
-/compiled.pkl
-**/compiled.pkl
 
 # generated test flow output
 .testflows/
