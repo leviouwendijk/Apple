@@ -17,14 +17,11 @@ let package = Package(
         .library(name: "AppleMaps", targets: ["AppleMaps"]),
         .library(name: "AppleContacts", targets: ["AppleContacts"]),
         .library(name: "AppleNumbers", targets: ["AppleNumbers"]),
-
-        .executable(name: "numberstest", targets: ["AppleNumbersTestFlows"]),
     ],
     dependencies: [
         .package(url: "https://github.com/leviouwendijk/Schema.git", branch: "master"),
         .package(url: "https://github.com/leviouwendijk/Macros.git", branch: "master"),
         .package(url: "https://github.com/leviouwendijk/Milieu.git", branch: "master"),
-        .package(url: "https://github.com/leviouwendijk/TestFlows.git", branch: "master"),
         .package(url: "https://github.com/weichsel/ZIPFoundation.git", exact: "0.9.20"),
     ],
     targets: [
@@ -70,15 +67,6 @@ let package = Package(
                 .product(name: "ZIPFoundation", package: "ZIPFoundation"),
             ],
             path: "Sources/AppleNumbers"
-        ),
-
-        .executableTarget(
-            name: "AppleNumbersTestFlows",
-            dependencies: [
-                "AppleNumbers",
-                .product(name: "TestFlows", package: "TestFlows"),
-            ],
-            path: "Testing/AppleNumbersTestFlows"
         ),
 
         // EventKit events

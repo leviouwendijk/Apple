@@ -19,3 +19,5 @@ xcuserdata/
 
 # generated test flow output
 .testflows/
+**/.testflows/*
+!**/.testflows/snapshots/
