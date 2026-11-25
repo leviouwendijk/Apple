@@ -19,9 +19,9 @@ let package = Package(
         .library(name: "AppleNumbers", targets: ["AppleNumbers"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/leviouwendijk/Schema.git", branch: "master"),
-        .package(url: "https://github.com/leviouwendijk/Macros.git", branch: "master"),
-        .package(url: "https://github.com/leviouwendijk/Milieu.git", branch: "master"),
+        .package(url: "https://github.com/swift-lco/Schema.git", branch: "master"),
+        .package(url: "https://github.com/swift-lco/Macros.git", branch: "master"),
+        .package(url: "https://github.com/swift-lco/Milieu.git", branch: "master"),
         .package(url: "https://github.com/weichsel/ZIPFoundation.git", exact: "0.9.20"),
     ],
     targets: [
