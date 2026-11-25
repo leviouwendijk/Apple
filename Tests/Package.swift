@@ -10,7 +10,7 @@ let package = Package(
         .executable(name: "numberstest", targets: ["AppleNumbersTestFlows"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/leviouwendijk/TestFlows.git", branch: "master"),
+        .package(url: "https://github.com/swift-tooling/TestFlows.git", branch: "master"),
         .package(path: ".."),
     ],
     targets: [
